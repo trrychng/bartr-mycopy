@@ -3,8 +3,8 @@ var db = require("../models");
 module.exports = function(app) {
 
 
-app.get("/items", function (req, res) {
-    res.render("items", {
+app.get("/additem", function (req, res) {
+    res.render("item_add", {
         title: "Post your Item"
     });
 })
@@ -24,6 +24,29 @@ app.post("/api/items", function (req, res) {
 
 
 });
+
+
+
+app.get("/items", function (req, res) {
+    
+
+    db.Item.findAll({
+
+      }).then(function(dbPost) {
+        console.log(dbPost);
+        let itemDate= {
+            Item: dbPost
+        }
+        res.render("items", itemDate);
+      });
+
+
+})
+
+
+
+
+
 
 
 app.get("/api/items/:itemId?", function (req, res) {
