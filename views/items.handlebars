@@ -3,15 +3,37 @@
 <div id="Items">
 <ul>
   {{#each Item}}
+
     <li id="ready">
-	    item Number. {{id}}. {{itemName}} -- description. {{description}} -- price. {{price}} --- {{createdAt}}
-	    <button class="offer" data-id="{{id}}" id="offer">MAKE AN OFFER!</button>
+	    <p>item Number: {{id}}.</p>
+        <p>item name : {{itemName}}  </p>
+        <p>Seller: {{User.userName}}</p>
+        <p>Seller email: {{User.email}}</p>
+
+        {{!-- {{MODAL BEGIN}} --}}
+        <button class="btn btn-primary offer"  data-id="{{id}}" data-toggle="modal" data-target=".DATA-{{id}}">View Details</button>
+        <div class="modal fade DATA-{{id}}"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <p>item Number: {{id}}.</p>
+                    <p>item name : {{itemName}}  </p>
+                    <p>description: {{description}}</p>
+                    <p>price: {{price}}  </p>
+                    <p>Posted at: {{createdAt}} </p>
+                </div>
+            </div>
+        </div>
+
+        {{!-- {{MODAL END}} --}}
+
     </li>
   {{/each}}
+     
+
+
+
 </ul>
 
 </div>
-
-
 
 </div>

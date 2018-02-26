@@ -31,9 +31,13 @@ app.get("/items", function (req, res) {
     
 
     db.Item.findAll({
-
+        include: [
+            {
+              model: db.User
+            }
+        ]
       }).then(function(dbPost) {
-        console.log(dbPost);
+        console.log(dbPost.User);
         let itemDate= {
             Item: dbPost
         }
@@ -58,7 +62,14 @@ app.get("/api/items/:itemId?", function (req, res) {
 
 
     db.Item.findAll({
-        where: query
+        where: query,
+        include: 
+            {
+              model: db.User
+            }
+        
+        
+       
       }).then(function(dbPost) {
         console.log(dbPost);
         res.json(dbPost);
