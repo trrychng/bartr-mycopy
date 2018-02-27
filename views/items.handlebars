@@ -1,5 +1,6 @@
 <h1 id="Item List">The Item List</h1>
 
+
 <div id="Items">
 <ul>
   {{#each Item}}
@@ -11,7 +12,7 @@
         <p>Seller email: {{User.email}}</p>
 
         {{!-- {{MODAL BEGIN}} --}}
-        <button class="btn btn-primary offer"  data-id="{{id}}" data-toggle="modal" data-target=".DATA-{{id}}">View Details</button>
+        <button class="btn btn-primary offer"  data-toggle="modal" data-target=".DATA-{{id}}">Make Offer</button>
         <div class="modal fade DATA-{{id}}"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -20,6 +21,13 @@
                     <p>description: {{description}}</p>
                     <p>price: {{price}}  </p>
                     <p>Posted at: {{createdAt}} </p>
+                    <form method ="POST" action="/api/offers/{{id}}">
+                    <div class="form-group">
+                    <label for="offerDescription">Offer</label>
+                    <input type="text" name = "offerDescription" class ="form-control"  placeholder = "Offer">
+                    <button type = "submit" class = "btn btn-primary offerButton">Submit Offer</button>
+                    </form>
+                    </div>
                 </div>
             </div>
         </div>

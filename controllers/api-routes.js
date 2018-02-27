@@ -5,6 +5,8 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+var userSession;
+
 module.exports = function (app) {
     app.get("/", function (req, res) {
         console.log(req.user);
@@ -15,9 +17,20 @@ module.exports = function (app) {
     })
 
     app.get("/profile", authenticationMiddleware(), function (req, res) {
-        res.render('profile', {
-            title: "Profile"
-        })
+        console.log(req.session.passport.user.userName)
+        db.User.find({
+            where: {
+              userName: req.session.passport.user.userName
+            }
+          }).then(function(results){
+            res.render('profile', {
+                title: 'Profile',
+                user: results.userName,
+                email: results.email,
+                firstName: results.firstName,
+                lastName: results.lastName
+            })
+          });
     });
 
     app.get('/login', function (req, res) {
@@ -73,7 +86,6 @@ module.exports = function (app) {
                 req.login(user_id, function (err) {
                     res.redirect('/');
                 });
-                res.json(results)
             });
         });
     });
@@ -102,3 +114,4 @@ function authenticationMiddleware() {
 // .catch(Sequelize.ValidationError, function (err) {
 //     console.log(err + "heres your error")
 // })
+

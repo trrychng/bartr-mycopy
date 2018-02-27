@@ -32,7 +32,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [2]
       }
+    },
+    imgSource: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      len: [1]
     }
+
   });
     
   User.associate = function(models) {
@@ -41,18 +47,13 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Item, {
       onDelete: "cascade"
     });
+    User.hasMany(models.Offers, {
+      onDelete: "cascade"
+    });
   };
 
   return User;
 };
-
-
-
-
-
-
-
-
 
 
 
