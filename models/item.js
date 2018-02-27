@@ -17,14 +17,18 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       len: [1]
     },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      len: [1]
+    },
     itemLocation: {
       type: DataTypes.TEXT,
       allowNull: true,
       len: [1]
     },
     isSold: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.BOOLEAN,
       defaultValue: false
     },
     imgSource: {
