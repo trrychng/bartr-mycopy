@@ -47,7 +47,7 @@
                     <p>Current Offers:</p>
                     <ul class="current_offer">
                      {{#each Offers}}
-                    <li>{{this.userOffer}}</li>
+                    <li>{{this.userOffer}} offer by: {{this.User.userName}}</li>
                      {{/each}}
                       </ul>
                     <form method ="POST" action="/api/offers/{{id}}">

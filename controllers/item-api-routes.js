@@ -189,7 +189,11 @@ module.exports = function (app) {
                         model: db.Category,
                         where: query
                      },{model: db.User},
-                     {model: db.Offers}
+                     {model: db.Offers,
+                        include:  [{
+                            model: db.User
+                        }]
+                    }
                     ],
                     order: [
                         ['createdAt', 'ASC']
