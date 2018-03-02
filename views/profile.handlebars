@@ -1,12 +1,11 @@
  <h1>{{title}}</h1> 
  
     <div>
-    <p>{{userName}}</p>
-    <p>{{email}}</p>
-    <p>{{firstName}}</p>
-    <p>{{lastName}}</p>
+    <p>name:  {{profile.firstName}} {{profile.lastName}} </p>
+    <p>email:  {{profile.email}}</p>
+    <p>member since:  {{profile.createdAt}}</p>
 
-
+    <img src={{profile.imgSource}} alt={{profile.firstName}} height="200" >
     </div>
 
 

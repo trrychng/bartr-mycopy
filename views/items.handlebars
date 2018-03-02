@@ -1,26 +1,55 @@
-<h1 id="Item List">The Item List</h1>
-
-
 <div id="Items">
-<ul>
+
+       <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
   {{#each Item}}
 
-    <li id="ready">
-	    <p>item Number: {{id}}.</p>
+
+	    {{!-- <p>item Number: {{id}}.</p>
         <p>item name : {{itemName}}  </p>
         <p>Seller: {{User.userName}}</p>
         <p>Seller email: {{User.email}}</p>
+        <img src={{imgSource}} alt={{itemName}} height="275" > --}}
+
+                  
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src={{imgSource}} alt={{itemName}}>
+                <div class="card-body">
+                  <p class="card-text text-lowercase font-weight-bold">{{itemName}}</p>
+                  <p class="card-text text-uppercase font-weight-light">{{description}}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" data-toggle="modal" data-target=".DATA-{{id}}" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/edit">Edit</a></button>
+                    </div>
+                    <small class="text-muted">{{Category.Category}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
 
         {{!-- {{MODAL BEGIN}} --}}
-        <button class="btn btn-primary offer"  data-toggle="modal" data-target=".DATA-{{id}}">Make Offer</button>
+        {{!-- <button class="btn btn-primary offer"  data-toggle="modal" data-target=".DATA-{{id}}">Make Offer</button> --}}
         <div class="modal fade DATA-{{id}}"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <p>item Number: {{id}}.</p>
                     <p>item name : {{itemName}}  </p>
+                    <p>seller's Username: {{User.userName}}</p>
+                    <p>seller's Email: {{User.email}}</p>
                     <p>description: {{description}}</p>
                     <p>price: {{price}}  </p>
                     <p>Posted at: {{createdAt}} </p>
+
+                    <p>Current Offers:</p>
+                    <ul class="current_offer">
+                     {{#each Offers}}
+                    <li>{{this.userOffer}}</li>
+                     {{/each}}
+                      </ul>
                     <form method ="POST" action="/api/offers/{{id}}">
                     <div class="form-group">
                     <label for="offerDescription">Offer</label>
@@ -34,13 +63,17 @@
 
         {{!-- {{MODAL END}} --}}
 
-    </li>
+
+
+
+
+  
   {{/each}}
      
 
 
 
-</ul>
+
 
 </div>
 

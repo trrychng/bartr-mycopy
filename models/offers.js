@@ -1,6 +1,6 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Offers = sequelize.define("Offers", {
-      userOffer: {
+    userOffer: {
       type: DataTypes.TEXT,
       allowNull: false,
       len: [1]
@@ -10,11 +10,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       len: [1]
     }
-    
+
 
   });
 
-  Offers.associate = function(models) {
+  Offers.associate = function (models) {
 
     Offers.belongsTo(models.User, {
       foreignKey: {

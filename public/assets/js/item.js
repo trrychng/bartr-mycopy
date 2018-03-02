@@ -12,7 +12,36 @@
 //     });
 //   }
 
+var categorySelect = $("#category");
+getCategory();
 
+function getCategory() {
+  $.get("/api/category", renderCategoryList);
+}
+
+function renderCategoryList(data) {
+  // if (!data.length) {
+  //   window.location.href = "/";
+  // }
+  console.log(data)
+  var rowsToAdd = [];
+  for (var i = 0; i < data.length; i++) {
+    rowsToAdd.push(createCategoryRow(data[i]));
+  }
+  categorySelect.empty();
+  console.log(rowsToAdd);
+  console.log(categorySelect);
+  categorySelect.append(rowsToAdd);
+  // categorySelect.val(authorId);
+}
+
+
+function createCategoryRow(Category) {
+  var listOption = $("<option>");
+  listOption.attr("value", Category.id);
+  listOption.text(Category.Category);
+  return listOption;
+}
 
 
 

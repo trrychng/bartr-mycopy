@@ -2,7 +2,7 @@ var path = require("path");
 
 // Routes
 // =============================================================
-module.exports = function(app) {
-   
+module.exports = function (app) {
+
 
 }

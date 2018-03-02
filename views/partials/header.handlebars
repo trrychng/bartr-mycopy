@@ -1,23 +1,23 @@
- <header>   
+ {{!-- <header>   
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
+              <h4 class="text-black">About</h4>
               <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
+              <h4 class="text-black">Contact</h4>
               <ul class="list-unstyled">
-                <li><a href="/" class="text-white">Home</a></li>
+                <li><a href="/" class="text-black">Home</a></li>
                 {{#if isAuthenticated}}
-                <li><a href="/logout" class="text-white">Logout</a></li>
-                <li><a href="/profile" class="text-white">Profile</a></li>
-                <li><a href="/items" class="text-white">Items</a></li>
-                <li><a href="/additem" class = "text-white">Add Item</a></li>
+                <li><a href="/logout" class="text-black">Logout</a></li>
+                <li><a href="/profile" class="text-black">Profile</a></li>
+                <li><a href="/items" class="text-black">Items</a></li>
+                <li><a href="/additem" class = "text-black">Add Item</a></li>
                 {{else}}
-                <li><a href="/register" class="text-white">Register</a></li>
-                <li><a href="/login" class="text-white">Login</a></li>
+                <li><a href="/register" class="text-black">Register</a></li>
+                <li><a href="/login" class="text-black">Login</a></li>
                 {{/if}}
               </ul>
             </div>
@@ -36,4 +36,95 @@
           </button>
         </div>
       </div>
-    </header>
+      <div class ="navbar navbar-dark bg-dark box-shadow">
+<button type="button" id = class="btn btn-outline-primary">Cars</button>
+<button type="button" class="btn btn-outline-secondary">Motors</button>
+<button type="button" class="btn btn-outline-success">Tech</button>
+<button type="button" class="btn btn-outline-danger">Leisure</button>
+<button type="button" class="btn btn-outline-warning">Home</button>
+<button type="button" class="btn btn-outline-info">Entertainment</button>
+<button type="button" class="btn btn-outline-light">Fashion</button>
+<button type="button" class="btn btn-outline-primary">Child</button>
+<button type="button" class="btn btn-outline-light">Other</button>
+</div>
+    </header> --}}
+
+
+
+
+    <header>
+			<div class="navbar">
+				<a href="/"><img src="/assets/img/website/bartr_logo.png" height="100px"> </a>
+					<div class="row">
+						<!-- /.col-lg-6 -->
+						<div class="col-lg-12">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search for...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">Go!</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				<div class="col-sm-4 offset-md-1 py-4">
+              <ul class="list-unstyled">
+                <li><a href="/" class="text-black">Home</a></li>
+                {{#if isAuthenticated}}
+                <li><a href="/logout" class="text-black">Logout</a></li>
+                <li><a href="/profile" class="text-black">Profile</a></li>
+                <li><a href="/items" class="text-black">Items</a></li>
+                <li><a href="/additem" class = "text-black">Add Item</a></li>
+                {{else}}
+                <li><a href="/register" class="text-black">Register</a></li>
+                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+                {{/if}}
+              </ul>
+            </div>
+				
+        
+
+				<div id="id01" class="modal">
+				
+					<form class="modal-content animate" method ="POST" action="/login">
+						<div class="imgcontainer">
+							<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+						</div>
+				
+						<div class="container">
+							<label for="username">
+								<b>Username</b>
+							</label>
+							<input type="text" placeholder="Enter Username" name="username" required>
+				
+							<label for="password">
+								<b>Password</b>
+							</label>
+							<input type="password" placeholder="Enter Password" name="password" required>
+				
+							<button type="submit">Login</button>
+							<label>
+								<input type="checkbox" checked="checked" name="remember"> Remember me
+							</label>
+						</div>
+				
+						<div class="container" style="background-color:#f1f1f1">
+							<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+							<span class="psw"> <a href="#">Forgot Password?</a>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+           <div class="jumbotron text-center"></section>
+        
+          <div class="btn-group">
+
+            {{#each Category}}
+        
+            <button class="button button{{id}} {{Category}}" > <a href="/items/{{Category}}">  <img src={{imgSource}} height="20px"> {{Category}} </button></a>
+            {{/each}}
+
+           </div>
+        </div>
+      </div>
+		</header>
