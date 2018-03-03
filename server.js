@@ -24,7 +24,7 @@ var bcrypt = require('bcrypt');
 
 if(process.env.JAWSDB_URL) {
   //Heroku deployment
-  var options = process.env.JAWSDB_URL;
+  var options = {process.env.JAWSDB_URL};
 } else {
   //local host
   var options = {
