@@ -1,16 +1,19 @@
+<body class = "bg-dark">
 <div class = "container">
  <form method ="POST" action="/login">
-        <div class = "card">{{msg}}</div>
+    <div class = "bg-primary p-5">
+        <div class = "text-white card text-center text-dark">{{msg}}</div>
         <div class="form-group">
-            <label for="username">Username</label>
+            <label class = "fontSize font-weight-bold text-white" for="username">Username</label>
             <input type="text" name = "username" class ="form-control"  placeholder = "Username">
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
+            <label class = "fontSize font-weight-bold text-white" for="password">Password</label>
             <input type="password" name = "password" class ="form-control" placeholder = "Password">
         </div>
-        <button type = "submit" class = "btn btn-primary">Submit</button>
+        <button type = "submit" class = "font-weight-bold btn btn-dark pull-left button-block size">Submit</button>
     </div>
+</body>
        
 
 

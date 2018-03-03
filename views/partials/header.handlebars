@@ -1,4 +1,4 @@
-<header>
+<header class = "mb-5 bg-warning" >
 			<div class="navbar">
 				<a href="/"><img src="/assets/img/website/bartr_logo.png" height="100px"> </a>
 					<div class="row">
@@ -8,22 +8,22 @@
 					</div>
 				<div class="col-sm-4 offset-md-1 py-4">
               <ul class="list-unstyled">
-                <li><a href="/" class="text-black">Home</a></li>
+                <li><a class = "p-3 bg-success border border-info linkSize text-white" href="/" class="text-black">Home</a></li>
                 {{#if isAuthenticated}}
-                <li><a href="/logout" class="text-black">Logout</a></li>
-                <li><a href="/profile" class="text-black">Profile</a></li>
-                <li><a href="/items" class="text-black">Items</a></li>
-                <li><a href="/additem" class = "text-black">Add Item</a></li>
+                <li><a class = "p-3 bg-success border border-info text-white" href="/logout" class="text-black">Logout</a></li>
+                <li><a class = "p-3 bg-success border border-info text-white" href="/profile" class="text-black">Profile</a></li>
+                <li><a class = "p-3 bg-success border border-info text-white" href="/items" class="text-black">Items</a></li>
+                <li><a class = "p-3 bg-success border border-info text-white" href="/additem" class = "text-black">Add Item</a></li>
                 {{else}}
-                <li><a href="/register" class="text-black">Register</a></li>
-                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+                <li><a class = "p-3 bg-success border border-info text-white" href="/register" class="text-black">Register</a></li>
+                <a class = "p-3 bg-success border border-info text-white"onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</a>
                 {{/if}}
               </ul>
             </div>
 				
         
 
-				<div id="id01" class="modal">
+				<div id="id01" class="modal bg-dark">
 				
 					<form class="modal-content animate" method ="POST" action="/login">
 						<div class="imgcontainer">
@@ -41,7 +41,7 @@
 							</label>
 							<input type="password" placeholder="Enter Password" name="password" required>
 				
-							<button type="submit">Login</button>
+							<button class = "bg-dark text-white" type="submit">Login</button>
 							<label>
 								<input type="checkbox" checked="checked" name="remember"> Remember me
 							</label>
@@ -49,26 +49,25 @@
 				
 						<div class="container" style="background-color:#f1f1f1">
 							<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-							<span class="psw"> <a href="#">Forgot Password?</a>
+							<span class="psw"> <a class = "text-warning" href="#">Forgot Password?</a>
 							</span>
 						</div>
 					</form>
 				</div>
 			</div>
-           <div class="jumbotron text-center"></section>
+           {{!-- <div class="jumbotron text-center"></section> --}}
         
-       
 
- <div class="btn-group">
 
-            {{#each Category}}
-			<div class = "col-sm-2">
-			<h6>{{Category}}</h6>
-            <button class="button button{{id}} {{Category}}" > <a href="/items/{{Category}}">  <img src={{imgSource}} height="45px" width = "60px">  </button></a>
-            </div>
-			{{/each}}
+<div class="btn-group">
 
+           {{#each Category}}
+            <div class = "col-sm-2">
+            <h6>{{Category}}</h6>
+           <button class="button button{{id}} {{Category}}" > <a href="/items/{{Category}}">  <img src={{imgSource}} height="45px" width = "60px">  </button></a>
            </div>
-        </div>
-      </div>
+            {{/each}}
+
+          </div>
 		</header>
+

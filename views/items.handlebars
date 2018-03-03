@@ -35,15 +35,13 @@
         {{!-- <button class="btn btn-primary offer"  data-toggle="modal" data-target=".DATA-{{id}}">Make Offer</button> --}}
         <div class="modal fade DATA-{{id}}"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <p>item Number: {{id}}.</p>
-                    <p>item name : {{itemName}}  </p>
-		    <p>seller's Username: {{User.userName}}</p>
-                    <p>sell's email: {{User.email}}</p>
-                    <p>description: {{description}}</p>
-                    <p>price: {{price}}  </p>
-                    <p>Posted at: {{createdAt}} </p>
-		    <p>Current Offers:</p>
+                <div class="modal-content text-center">
+                   <p>Item name : {{itemName}}  </p>
+            <p>Seller's Username: {{User.userName}}</p>
+                   <p>Seller's Email: {{User.email}}</p>
+                   <p>Description: {{description}}</p>
+                   <p>Price: {{price}}  </p>
+            <p>Current Offers:</p>
                     <ul class="current_offer">
                      {{#each Offers}}
                     <li>{{this.userOffer}} offer by: {{this.User.userName}}</li>
