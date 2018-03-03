@@ -58,16 +58,17 @@
            {{!-- <div class="jumbotron text-center"></section> --}}
         
 
-
-<div class="btn-group">
+<div class = "container">
+	<div class="btn-group">
 
            {{#each Category}}
-            <div class = "col-sm-2">
+            <div class = "col-sm-2 center">
             <h6>{{Category}}</h6>
            <button class="button button{{id}} {{Category}}" > <a href="/items/{{Category}}">  <img src={{imgSource}} height="45px" width = "60px">  </button></a>
            </div>
             {{/each}}
 
           </div>
+</div>
 		</header>
 

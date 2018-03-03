@@ -42,14 +42,6 @@ input:invalid {
 	background-color: rgb(61, 17, 17);
 }
 
-h6{
-    color: white;
-    text-align: center;
-    font-size: 21px;
-    padding-left: 10px;
-    font-family: 'Lobster', cursive;
-    padding-bottom: 10px;
-}
 
 .button1 {
 	margin-left: 10px;
@@ -323,4 +315,13 @@ modal {
 	.cancelbtn {
 		width: 100%;
 	}
+}
+
+h6{
+	color: white;
+    text-align: center;
+    font-size: 21px;
+    padding-left: 10px;
+    font-family: 'Lobster', cursive;
+    padding-bottom: 10px;
 }
