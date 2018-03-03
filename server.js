@@ -20,13 +20,29 @@ var session = require("express-session");
 var MySQLStore = require("express-mysql-session")(session);
 var bcrypt = require('bcrypt');
 
-var options = {
-  port: 3306,
+
+
+if(process.env.JAWSDB_URL) {
+  //Heroku deployment
+  options = process.env.JAWSDB_URL;
+} else {
+  //local host
+  options = mysql.createConnection({
+    port: 3306,
   host: "localhost",
   user: "root",
   password: "root",
   database: "bartr_db"
+    });
 };
+
+// var options = {
+//   port: 3306,
+//   host: "localhost",
+//   user: "root",
+//   password: "root",
+//   database: "bartr_db"
+// };
 
 var sessionStore = new MySQLStore(options);
 
