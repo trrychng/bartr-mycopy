@@ -72,6 +72,74 @@ module.exports = function (app) {
 
 
 
+        app.get("/api/items/my2", function (req, res) {
+
+        let Categorydata
+        db.Category.findAll({
+
+        }).then(function (data) {
+            Categorydata = data
+        });
+
+        let openOffers
+        let query = {}
+       
+  
+        db.User.find({
+            where: {
+                userName: req.session.passport.user.userName
+            }
+        }).then(function (profileResults) {
+                 
+        db.Item.findAll({
+            where: {
+                UserId: profileResults.id
+            },
+            include: [{
+                    model: db.Offers,
+                    include: { model: db.User}
+                },
+                {
+                    model: db.User
+                }
+            ],
+            order: [
+                ['createdAt', 'DESC']
+            ]
+
+        }).then(function (dbPost) {
+            console.log(dbPost);
+            db.Offers.findAll({
+                where: {
+                    UserId: profileResults.id
+                },
+                include: [{
+                        model: db.Item,
+                        include: { model: db.User}
+                    },
+                    {
+                        model: db.User
+                    }
+                ],
+                order: [
+                    ['createdAt', 'DESC']
+                ]
+            }).then(function (bidData) {   
+                
+                let itemData = {
+                    Item: dbPost,
+                    title: 'Profile',
+                    profile: profileResults,
+                    bid: bidData
+                }
+    
+    
+                res.json(itemData);
+        });
+    });
+    });
+    })
+
  
 
     app.get("/api/items/:itemId?", function (req, res) {

@@ -146,17 +146,35 @@ module.exports = function (app) {
             ]
 
         }).then(function (dbPost) {
-            console.log(dbPost)
-
-            let itemData = {
-                Item: dbPost,
-                title: 'Profile',
-                profile: profileResults
-            }
-
-
-            res.render("profile2", itemData);
+            console.log(dbPost);
+            db.Offers.findAll({
+                where: {
+                    UserId: profileResults.id
+                },
+                include: [{
+                        model: db.Item,
+                        include: { model: db.User}
+                    },
+                    {
+                        model: db.User
+                    }
+                ],
+                order: [
+                    ['createdAt', 'DESC']
+                ]
+            }).then(function (bidData) {   
+                
+                let itemData = {
+                    Item: dbPost,
+                    title: 'Profile',
+                    profile: profileResults,
+                    bid: bidData
+                }
+    
+    
+                res.render("profile2", itemData);
         });
+    });
     });
     })
 
