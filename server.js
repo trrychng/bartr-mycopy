@@ -46,9 +46,9 @@ if(process.env.JAWSDB_URL) {
 // };
 
 // var connection = mysql.createConnection(options)
-var sessionStore = new MySQLStore(options);
+// var sessionStore = new MySQLStore(options);
 
-
+console.log(options)
 var PORT = process.env.PORT || 3000;
 
 var db = require("./models");
