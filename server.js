@@ -24,17 +24,16 @@ var bcrypt = require('bcrypt');
 
 if(process.env.JAWSDB_URL) {
   //Heroku deployment
-  options = process.env.JAWSDB_URL;
+  var options = process.env.JAWSDB_URL;
 } else {
   //local host
-  options = mysql.createConnection({
+  var options = {
     port: 3306,
   host: "localhost",
   user: "root",
   password: "root",
   database: "bartr_db"
-    });
-};
+};}
 
 // var options = {
 //   port: 3306,
