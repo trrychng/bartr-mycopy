@@ -43,7 +43,9 @@ if(process.env.JAWSDB_URL) {
 //   database: "bartr_db"
 // };
 
+// var connection = mysql.createConnection(options)
 var sessionStore = new MySQLStore(options);
+
 
 var PORT = process.env.PORT || 3000;
 
