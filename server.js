@@ -14,6 +14,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var multer = require("multer")
 var busboy = require("then-busboy")
 var fileUpload = require('express-fileupload')
+var mysql = require('mysql');
 
 
 var session = require("express-session");
