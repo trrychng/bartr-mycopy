@@ -10,6 +10,7 @@
             <div class="col-sm-6">
                 <h5 class="card-title">Username: {{profile.userName}}</h5>
                 <p class="card-text">Full Name: {{profile.firstName}} {{profile.lastName}} </p>
+                <p class="card-text">Member Since : {{profile.createdAt}} </p>
             </div>
         </div>
     </div>
@@ -19,15 +20,16 @@
 </div>
 
 <br>
-<br> {{#each item}} {{#unless isSold}}
+<br> {{#each Item}} {{#unless isSold}}
 <div class="container">
-    <div class="row">
-        <div class="col-sm-3">
+    <div class="row" id="w1m">
+        <div class="col-sm-3" >
             <div class="card box-shadow">
                 <img class="card-img-top" src={{imgSource}}>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <button type="button" data-toggle="modal" data-target=".DATA-{{id}}" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" data-toggle="modal" data-target=".DATA-{{id}}" class="btn btn-sm btn-outline-secondary">Edit</button>
+                         <button type="button" data-button={{id}}-box class="btn btn-sm btn-outline-secondary HIDE">HIDE</button>
                     </div>
 
                 </div>
@@ -40,42 +42,31 @@
                     <p class="card-text font-weight-bold">Item Name: {{itemName}}</p>
                     <p class="card-text font-weight-light">Description: {{description}}</p>
                     <p class="card-text font-weight-light">Price: ${{price}}</p>
-
+                    
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                Launch demo modal
-                            </button>
+                    
+                    {{#if this.Offers}}
+                     <ul class="list-group">
+                    {{#each this.Offers}}
+                    {{#unless this.offerStatus}}
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">{{itemName}}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class = "container">
-                                            {{#each offer}}
+                     <li class="list-group-item" id="offer" >
+                     <p>user: {{this.User.userName}} </p>
+                     <p>offers: {{this.userOffer}} </p>
+                     <img  height="250" src={{this.imgSource}} alt={{this.userOffer}} >
+                      <button type="button" data-button={{this.id}} class="btn btn-sm btn-outline-secondary ACCEPT">ACCEPT</button>
+                      <button type="button" data-button={{this.id}} class="btn btn-sm btn-outline-secondary DECLINE">DECLINE</button>
+                   
+                    
 
-                                            <div class = "row">
-                                            <img src = 
-                                            {{imgSource}}>
-                                            </div>
-                                            {{/each}}
-                                            </div>
-                                       </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                     </li>
+                    {{/unless}}
+                    {{/each}}
+                    </ul>
+                    
+                    {{/if}} 
+
                     </div>
                 </div>
             </div>
@@ -89,7 +80,7 @@
     Your Sold/Cancelled Items
 </div>
 <br>
-<br> {{#each item}} {{#if isSold}}
+<br> {{#each Item}} {{#if isSold}}
 <div class="container">
     <div class="col-sm-3">
         <div class="card box-shadow">
@@ -118,3 +109,35 @@
 
 </div>
 {{/if}} {{/each}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

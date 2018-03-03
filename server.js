@@ -100,7 +100,10 @@ passport.use(new LocalStrategy(
         userName: username
       }
     }).then(function (results) {
-
+      if (results === null){
+        done(null, false)
+      }
+      else{
       if (results.password.length === 0) {
         done(null, false);
       } else {
@@ -119,6 +122,7 @@ passport.use(new LocalStrategy(
           }
         });
       }
+    }
     })
   }
 ));

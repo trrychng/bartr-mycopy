@@ -1,41 +1,35 @@
- <h1>{{title}}</h1> 
-
-<div class="container">
-    
-    {{!-- {{#if errors}}
-        {{#each errors}}
-        <div class = "alert alert-danger">
-            {{this.msg}}
-        </div>
-        {{/each}}    
-    {{/if}} --}}
-
-    <form method ="POST" action="/registernew">
-        <h1>{{title}}</h1>
+<body class = "bg-dark"> 
+<div class="container bg-primary">
+    <form enctype="multipart/form-data"  method ="POST" action="/registernew">
          <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" name = "firstName" class ="form-control"  placeholder = "First Name" required minlength="4" maxlength="15">
+            <label class = "text-light font-weight-bold" for="firstName" class="text-lg text-bold">First Name</label>
+            <input type="text" name = "firstName" class ="form-control form-control-lg"  placeholder = " First Name" required minlength="4" maxlength="15">
         </div>
          <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" name = "lastName" class ="form-control"  placeholder = "Last Name">
+            <label class = "text-light font-weight-bold" for="lastName">Last Name</label>
+            <input type="text" name = "lastName" class ="form-control form-control-lg"  placeholder = "Last Name">
         </div>
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name = "username" class ="form-control"  placeholder = "Username">
+            <label class = "text-light font-weight-bold" for="username">Username</label>
+            <input type="text" name = "username" class ="form-control form-control-sm"  placeholder = "Username">
         </div>
         <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="email" name = "email" class ="form-control" placeholder = "Email">
+            <label class = "text-light font-weight-bold" for="email">E-mail</label>
+            <input type="email" name = "email" class ="form-control form-control-sm" placeholder = "Email">
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name = "password" class ="form-control" placeholder = "Password">
+            <label class = "text-light font-weight-bold" for="password">Password</label>
+            <input type="password" name = "password" class ="form-control form-control-sm" placeholder = "Password">
         </div>
        <div class="form-group">
-            <label for="passwordMatch">Re-enter Password</label>
-            <input type="password" name = "passwordMatch" class ="form-control"  placeholder = "Password">
+            <label class = "text-light font-weight-bold" for="passwordMatch">Re-enter Password</label>
+            <input type="password" name = "passwordMatch" class ="form-control form-control-sm"  placeholder = "Password">
         </div>
-        <button type = "submit" class = "btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label class = "text-light font-weight-bold" for="uploaded_profile" class="col-md-3 control-label">Item Image</label>
+            <input class="form-control" type="file" name="uploaded_profile" accept="" />
+        </div>
+        <button type = "submit" class = "font-weight-bold btn btn-dark pull-left button-block size">Submit</button>
        
 </div>
+</body>

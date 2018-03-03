@@ -1,4 +1,11 @@
-body {
+input:invalid {
+	border: 2px dashed red;
+  }
+  
+  input:valid {
+	border: 2px solid black;
+  }
+/* body {
 	padding-top: 100px;
 	z-index: -2px;
 }
@@ -10,7 +17,7 @@ body {
 	top: 0;
 	width: 100%;
 	z-index: 99999;
-}
+} */
 
 .navbar a {
 	float: right;
@@ -33,6 +40,15 @@ body {
 	margin-bottom: -67px;
 	padding: 4rem 0rem;
 	background-color: rgb(61, 17, 17);
+}
+
+h6{
+	color: white;
+	text-align: center;
+	padding-left: 10px;
+	font-size: 21px;
+	font-family: 'Lobster', cursive;
+	padding-bottom: 10px;
 }
 
 .button1 {

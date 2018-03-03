@@ -5,7 +5,6 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var nodemailer = require("nodemailer");
-var homeInfo = {}
 
 var userSession;
 
@@ -54,6 +53,8 @@ function executeEmail(name, email) {
 };
 
 module.exports = function (app) {
+
+
     app.get("/", function (req, res) {
 
 
@@ -70,22 +71,45 @@ module.exports = function (app) {
 
     })
 
-    app.get("/profile", authenticationMiddleware(), function (req, res) {
+    app.get("/profile1", authenticationMiddleware(), function (req, res) {
         db.User.find({
             where: {
                 userName: req.session.passport.user.userName
             }
-        }).then(function (results) {
-            res.render('profile',
-                profileData = {
-                    title: 'Profile',
-                    profile: results
+        }).then(function (profileResults) {
+            db.Offers.findAll({
+                where: {
+                    UserId: profileResults.id
+                }
+
+
+            }).then(function (offerResults) {
+                console.log(offerResults + " here is results for offer")
+                db.Item.findAll({
+                    where: {
+                        UserId: profileResults.id
+                    }
+                
+
+            }).then(function (itemResults) {
+                console.log(itemResults + " here they areeeeeee!!!")
+
+
+
+                res.render('profile',
+                    profileData = {
+                        title: 'Profile',
+                        profile: profileResults,
+                        item: itemResults,
+                        offer: offerResults
+                    })
                 })
+            });
         });
     });
 
 
-    app.get("/1", function (req, res) {
+    app.get("/profile", function (req, res) {
 
 
         let Categorydata
@@ -94,69 +118,47 @@ module.exports = function (app) {
         }).then(function (data) {
             Categorydata = data
         });
-        
 
+        let openOffers
         let query = {}
-        if(req.session.passport.user.userName){
+       
+  
         db.User.find({
             where: {
                 userName: req.session.passport.user.userName
             }
-        }).then(function (results) {
-             query = {UserId : results.id}
-        })
-    }
-
-
-        let openOffers
+        }).then(function (profileResults) {
+                 
         db.Item.findAll({
-             where: {
-                query,
-                isSold : 0
-             },
-             include: [
-                 {model: db.Offers},
-                {model: db.User}
+            where: {
+                UserId: profileResults.id
+            },
+            include: [{
+                    model: db.Offers,
+                    include: { model: db.User}
+                },
+                {
+                    model: db.User
+                }
             ],
             order: [
-                ['createdAt', 'ASC']
+                ['createdAt', 'DESC']
             ]
-            
+
         }).then(function (dbPost) {
             console.log(dbPost)
 
-    
+            let itemData = {
+                Item: dbPost,
+                title: 'Profile',
+                profile: profileResults
+            }
 
 
-
-            res.render('home',
-            homeData = {
-                title: 'Home',
-                Category: Categorydata
-            })
+            res.render("profile2", itemData);
         });
-
+    });
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     app.get('/login', function (req, res) {
         res.render('login', {
@@ -190,7 +192,6 @@ module.exports = function (app) {
     //     });
 
     // });
-
     app.get("/register", function (req, res) {
         res.render("register", {
             title: "Registration"
@@ -198,23 +199,53 @@ module.exports = function (app) {
     });
 
     app.post("/registernew", function (req, res) {
-        const password = req.body.password;
-        bcrypt.hash(password, saltRounds, function (err, hash) {
-            db.User.create({
-                userName: req.body.username,
-                password: hash,
-                email: req.body.email,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName
-            }).then(function (results) {
+        var fileThing = ""
+        // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+        if (req.files.uploaded_profile) {
 
-                executeEmail(results.userName, results.email)
-                res.render("login", {
-                    msg: "Email on the way"
+            let sampleFile = req.files.uploaded_profile;
+
+            fileThing = '/assets/img/profile/' + req.body.username + sampleFile.name
+
+            // Use the mv() method to place the file somewhere on your server
+            sampleFile.mv('./public/assets/img/profile/' + req.body.username + sampleFile.name)
+        } else {
+
+            fileThing = "/assets/img/profile/defaultprofile.png"
+        }
+
+
+
+        db.User.find({
+            where: {
+                userName: req.body.username
+            }
+        }).then(function (results) {
+            console.log(results + "here's the results")
+
+            if (results !== null) {
+                res.render("register", {
+                    msg: "Someone has that name!"
                 })
+            } else {
+                const password = req.body.password;
+                bcrypt.hash(password, saltRounds, function (err, hash) {
+                    db.User.create({
+                        userName: req.body.username,
+                        password: hash,
+                        email: req.body.email,
+                        firstName: req.body.firstName,
+                        lastName: req.body.lastName,
+                        imgSource: fileThing
+                    }).then(function (results) {
 
-
-            });
+                        executeEmail(results.userName, results.email)
+                        res.render("login", {
+                            msg: "Email on the way"
+                        })
+                    })
+                });
+            }
         });
     });
 }

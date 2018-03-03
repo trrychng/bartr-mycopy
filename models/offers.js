@@ -9,8 +9,17 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: true,
       len: [1]
+    },
+    imgSource: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      defaultValue: '',
+      len: [1]
+    },
+    offerStatus: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
-
 
   });
 

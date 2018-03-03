@@ -4,6 +4,7 @@
         <div class="container">
 
           <div class="row">
+  
   {{#each Item}}
 
 
@@ -23,8 +24,7 @@
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button type="button" data-toggle="modal" data-target=".DATA-{{id}}" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/edit">Edit</a></button>
-                    </div>
+                      </div>
                     <small class="text-muted">{{Category.Category}}</small>
                   </div>
                 </div>
@@ -38,27 +38,34 @@
                 <div class="modal-content">
                     <p>item Number: {{id}}.</p>
                     <p>item name : {{itemName}}  </p>
-                    <p>seller's Username: {{User.userName}}</p>
-                    <p>seller's Email: {{User.email}}</p>
+		    <p>seller's Username: {{User.userName}}</p>
+                    <p>sell's email: {{User.email}}</p>
                     <p>description: {{description}}</p>
                     <p>price: {{price}}  </p>
                     <p>Posted at: {{createdAt}} </p>
-
-                    <p>Current Offers:</p>
+		    <p>Current Offers:</p>
                     <ul class="current_offer">
                      {{#each Offers}}
                     <li>{{this.userOffer}} offer by: {{this.User.userName}}</li>
                      {{/each}}
                       </ul>
-                    <form method ="POST" action="/api/offers/{{id}}">
-                    <div class="form-group">
-                    <label for="offerDescription">Offer</label>
-                    <input type="text" name = "offerDescription" class ="form-control"  placeholder = "Offer">
-                    <button type = "submit" class = "btn btn-primary offerButton">Submit Offer</button>
-                    </form>
+                      
+                    <form enctype="multipart/form-data" method="POST" action="/api/offers/{{id}}">
+                <div class="form-group">
+                  <label for="offerDescription">Offer</label>
+                  <input type="text" name="offerDescription" class="form-control" placeholder="Offer">
+                  <div class="form-group">
+                    <label for="uploaded_offer" class="col-md-3 control-label">Item Image</label>
+                    <div class="col-sm-9">
+                      <input class="form-control" type="file" name="uploaded_offer" accept="" />
                     </div>
-                </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary offerButton">Submit Offer</button>
+              </form>
+              </div>
+              
             </div>
+          </div>
         </div>
 
         {{!-- {{MODAL END}} --}}

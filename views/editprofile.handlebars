@@ -1,0 +1,27 @@
+<body class = "bg-dark"> 
+<div class="container bg-primary">
+    <form enctype="multipart/form-data"  method ="POST" action="/editprofile">
+         <div class="form-group">
+            <label class = "text-light font-weight-bold" for="firstName" class="text-lg text-bold">First Name</label>
+            <input type="text" name = "firstName" class ="form-control form-control-lg"  value = {{firstName}} required minlength="4" maxlength="15">
+        </div>
+         <div class="form-group">
+            <label class = "text-light font-weight-bold" for="lastName">Last Name</label>
+            <input type="text" name = "lastName" class ="form-control form-control-lg"  value = {{lastName}}>
+        </div>
+        <div class="form-group">
+            <label class = "text-light font-weight-bold" for="username">Username</label>
+            <input type="text" name = "username" class ="form-control form-control-sm"  value = {{userName}}>
+        </div>
+        <div class="form-group">
+            <label class = "text-light font-weight-bold" for="email">E-mail</label>
+            <input type="email" name = "email" class ="form-control form-control-sm" value = {{email}}>
+        </div>
+        <div class="form-group">
+            <label class = "text-light font-weight-bold" for="uploaded_newprofile" class="col-md-3 control-label">Profile Image</label>
+            <input class="form-control" type="file" name="uploaded_newprofile" accept="" />
+        </div>
+        <button type = "submit" class = "font-weight-bold btn btn-dark pull-left button-block size">Submit</button>
+       
+</div>
+</body>
