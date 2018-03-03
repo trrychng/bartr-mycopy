@@ -81,7 +81,7 @@ app.set("view engine", "handlebars");
 app.use(session({
   secret: 'kdkaowlalkba',
   resave: false,
-  store: sessionStore,
+  // store: sessionStore,
   saveUninitialized: false
   // cookie: { secure: true }
 }))
